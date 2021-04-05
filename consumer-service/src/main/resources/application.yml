@@ -1,0 +1,15 @@
+# 应用名称
+spring:
+  application:
+    name: consumer
+# 应用服务 WEB 访问端口
+server:
+  port: ${PORT}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+# Actuator Web 访问端口
+
+

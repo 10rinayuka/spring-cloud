@@ -1,0 +1,11 @@
+# Eureka Server 配置
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+server:
+  port: 7001
+
+
