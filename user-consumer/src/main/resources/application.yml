@@ -2,6 +2,11 @@
 spring:
   application:
     name: user-consumer
+  # 默认 Ribbon 重试机制为 true 开启
+#  cloud:
+#    loadbalancer:
+#      ribbon:
+#        enabled: false
 # 应用服务 WEB 访问端口
 server:
   port: ${PORT}
@@ -12,4 +17,11 @@ eureka:
 
 # Actuator Web 访问端口
 
+# Ribbon 配置
+
+#ribbon:
+#  #连接超时时间(ms)
+#  ConnectTimeout: 1000
+#  # 业务逻辑超时时间(ms)
+#  ReadTimeout: 2000
 
