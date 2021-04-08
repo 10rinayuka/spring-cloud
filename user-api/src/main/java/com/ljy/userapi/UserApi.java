@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author jay
  * @date 2021/04/04
  */
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public interface UserApi {
 
-    @GetMapping("/alive")
+    @GetMapping("/user/alive")
     String alive();
 
     /**
@@ -22,6 +22,6 @@ public interface UserApi {
      * @RequestParam 必须加上 给 Feign 看的
      * @GetMapping 是给 Feign 看的，解析组装 url 用的（被调用方的服务）
      */
-    @GetMapping("/getById")
+    @GetMapping("/user/getById")
     String getById(@RequestParam("id") Integer id);
 }

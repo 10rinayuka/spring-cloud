@@ -2,9 +2,11 @@ package com.ljy.userconsumer.controller;
 
 import com.ljy.userapi.Person;
 import com.ljy.userconsumer.service.ConsumerApi;
+import com.ljy.userconsumer.service.RestService;
 import com.ljy.userconsumer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
@@ -23,6 +25,9 @@ public class UserConsumerController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    RestService restService;
+
     @GetMapping("/alive")
     public String alive() {
         return consumerApi.alive();
@@ -32,6 +37,18 @@ public class UserConsumerController {
     public String alive2() {
         return userService.alive();
     }
+
+    /**
+     * RestTemplate 集合 Hystrix
+     *
+     * @return
+     */
+    @GetMapping("/alive3")
+    public String alive3() {
+
+        return restService.alive();
+    }
+
 
     @GetMapping("/getId")
     public String getId(Integer id) {
@@ -88,13 +105,10 @@ public class UserConsumerController {
     /**
      * 限流
      * 1. 发起 Http 请求（每一个请求都需要消耗线程资源）
-     *   1.1 map(URI, 线程数) 记录 每个服务请求开启的线程数
-     *   1.2 线程池（线程数）
+     * 1.1 map(URI, 线程数) 记录 每个服务请求开启的线程数
+     * 1.2 线程池（线程数）
      * 2. 当前线程数达到限制，抛出异常
+     *
      * @return
      */
-    @GetMapping("/alive3")
-    public String alive3() {
-        return userService.alive();
-    }
 }

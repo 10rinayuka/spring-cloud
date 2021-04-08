@@ -2,6 +2,8 @@ package com.ljy.userconsumer.service;
 
 import com.ljy.userapi.Person;
 import com.ljy.userapi.UserApi;
+import com.ljy.userconsumer.hystrix.UserProviderBack;
+import com.ljy.userconsumer.hystrix.UserProviderBackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +17,8 @@ import java.util.Map;
  * @author jay
  * @date 2021/04/04
  */
-@FeignClient(name = "user-provider")
+//@FeignClient(name = "user-provider", fallback = UserProviderBack.class)
+@FeignClient(name = "user-provider", fallbackFactory = UserProviderBackFactory.class)
 public interface UserService extends UserApi {
 
     @GetMapping("/getMap")

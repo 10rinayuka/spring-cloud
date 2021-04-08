@@ -5,6 +5,9 @@ eureka:
     fetch-registry: false
     service-url:
       defaultZone: http://localhost:7001/eureka
+  server:
+    #关闭自我保护
+    enable-self-preservation: false
 server:
   port: 7001
 
