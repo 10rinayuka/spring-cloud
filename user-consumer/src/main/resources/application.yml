@@ -16,6 +16,23 @@ eureka:
       defaultZone: http://localhost:7001/eureka
 
 # Actuator Web 访问端口
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+# Hystrix Dashboard 配置
+hystrix:
+  dashboard:
+    proxy-stream-allow-list: "localhost"
+
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+
 
 # Ribbon 配置
 ribbon:
