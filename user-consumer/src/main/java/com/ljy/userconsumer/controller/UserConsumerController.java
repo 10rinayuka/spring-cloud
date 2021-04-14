@@ -5,8 +5,8 @@ import com.ljy.userconsumer.service.ConsumerApi;
 import com.ljy.userconsumer.service.RestService;
 import com.ljy.userconsumer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
@@ -28,6 +28,9 @@ public class UserConsumerController {
     @Autowired
     RestService restService;
 
+    @Value("${server.port}")
+    String port;
+
     @GetMapping("/alive")
     public String alive() {
         return consumerApi.alive();
@@ -46,7 +49,7 @@ public class UserConsumerController {
     @GetMapping("/alive3")
     public String alive3() {
 
-        return restService.alive();
+        return "user-consumer port: " + port + "--->>" + restService.alive();
     }
 
 

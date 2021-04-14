@@ -1,0 +1,24 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+
+spring:
+  application:
+    name: zuul-server
+
+server:
+  port: 80
+
+# 负载均衡策略配置
+# service名.ribbon.NFLoadBalancerRuleClassName = com.netflix.loadbalancer.RandomRule
+user-consumer:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+# 自定义映射
+zuul:
+  routes:
+    test:
+      path: /test/*
+      url: http://mashibing.com
